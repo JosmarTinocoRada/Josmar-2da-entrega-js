@@ -1,53 +1,48 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("neon-button").addEventListener("click", function() {
-        calcularPresupuesto(); // Llamamos a la función calcularPresupuesto() al hacer clic en el botón de neon
+        calcularPresupuesto(); // Llamar a la función calcular presupuesto al presionar el boton
     });
 
-    // Al cargar la página, limpiamos el contenido del contenedor y lo ocultamos
+   
     limpiarContenedorResultado();
 });
 
 function limpiarContenedorResultado() {
     let container = document.getElementById("resultado-container");
-    container.innerHTML = ""; // Limpiamos el contenido del contenedor
-    container.style.display = "none"; // Ocultamos el contenedor
+    container.innerHTML = ""; 
+    container.style.display = "none"; 
 }
 
 function calcularPresupuesto() {
-    // Solicitar al usuario que complete todos los datos
+    
     let tipoDeWeb, diasEntrega, numPaginas;
     while (true) {
         tipoDeWeb = prompt("¿Qué tipo de página web deseas: Web Estatica, Landing Page o Aplicacion Web?");
-        if (!tipoDeWeb) return; // Si el usuario cancela, salimos de la función
+        if (!tipoDeWeb) return; 
 
         switch (tipoDeWeb.toLowerCase()) {
             case "web estatica":
-                costoBase = 100;
-                break;
             case "landing page":
-                costoBase = 300;
-                break;
             case "aplicacion web":
-                costoBase = 400;
-                break;
+                break; 
             default:
                 alert("Tipo de página web no válido. Por favor, elige una opción válida.");
-                continue;
+                continue; // Si el tipo de página no es válido, solicitamos al usuario que ingrese nuevamente
         }
 
         diasEntrega = parseInt(prompt("¿En cuántos días la quieres?"));
-        if (isNaN(diasEntrega)) return; 
+        if (isNaN(diasEntrega)) return; // Si el usuario cancela o no completa la entrada, salimos de la función
 
         numPaginas = parseInt(prompt("¿Cuántas páginas tendrá el sitio?"));
         if (isNaN(numPaginas)) return; 
-
-        break; // Si llegamos aquí, todos los datos están completos y válidos, salimos del ciclo while
+        break; 
     }
 
     alert("Bienvenido al calculador de presupuesto.");
 
     let presupuestos = []; // Array para almacenar los datos ingresados por el usuario
 
+    // Calculamos el costo base fuera del switch
     let costoBase = 0;
 
     switch (tipoDeWeb.toLowerCase()) {
@@ -60,9 +55,6 @@ function calcularPresupuesto() {
         case "aplicacion web":
             costoBase = 400;
             break;
-        default:
-            alert("Tipo de página web no válido. Por favor, elige una opción válida.");
-            return; // Si el usuario ingresó un tipo de página web inválido, salimos de la función
     }
 
     if (numPaginas > 3) {
@@ -79,7 +71,6 @@ function calcularPresupuesto() {
 
     presupuestos.push(nuevoPresupuesto);
 
-    // Mostrar los resultados en la consola
     console.log("Resultados de los presupuestos:");
 
     presupuestos.forEach(function(presupuesto, index) {
@@ -90,6 +81,7 @@ function calcularPresupuesto() {
         console.log(`- Número de Páginas: ${presupuesto.numPaginas}`);
     });
 
+    // Mostrar los resultados en una lista ordenada en el HTML
     let listaHTML = document.createElement("ol"); 
     listaHTML.classList.add("resultado-lista");
 
@@ -102,7 +94,7 @@ function calcularPresupuesto() {
     let container = document.getElementById("resultado-container");
     container.innerHTML = ""; 
 
-    // Agregar Titulo de este es tu presupuesto
+    // Agregamos el título de este es tu presupuesto
     let titulo = document.createElement("h2");
     titulo.textContent = "Este es tu presupuesto";
     container.appendChild(titulo);
