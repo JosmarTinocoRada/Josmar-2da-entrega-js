@@ -15,20 +15,39 @@ function limpiarContenedorResultado() {
 
 function calcularPresupuesto() {
     // Solicitar al usuario que complete todos los datos
-    let tipoDeWeb = prompt("¿Qué tipo de página web deseas: Web Estatica, Landing Page o Aplicacion Web?");
-    if (!tipoDeWeb) return; // Si el usuario cancela o no completa la entrada, salimos de la función
-    
-    let diasEntrega = parseInt(prompt("¿En cuántos días la quieres?"));
-    if (isNaN(diasEntrega)) return; // Si el usuario cancela o no completa la entrada, salimos de la función
-    
-    let numPaginas = parseInt(prompt("¿Cuántas páginas tendrá el sitio?"));
-    if (isNaN(numPaginas)) return; // Si el usuario cancela o no completa la entrada, salimos de la función
+    let tipoDeWeb, diasEntrega, numPaginas;
+    while (true) {
+        tipoDeWeb = prompt("¿Qué tipo de página web deseas: Web Estatica, Landing Page o Aplicacion Web?");
+        if (!tipoDeWeb) return; // Si el usuario cancela, salimos de la función
+
+        switch (tipoDeWeb.toLowerCase()) {
+            case "web estatica":
+                costoBase = 100;
+                break;
+            case "landing page":
+                costoBase = 300;
+                break;
+            case "aplicacion web":
+                costoBase = 400;
+                break;
+            default:
+                alert("Tipo de página web no válido. Por favor, elige una opción válida.");
+                continue;
+        }
+
+        diasEntrega = parseInt(prompt("¿En cuántos días la quieres?"));
+        if (isNaN(diasEntrega)) return; 
+
+        numPaginas = parseInt(prompt("¿Cuántas páginas tendrá el sitio?"));
+        if (isNaN(numPaginas)) return; 
+
+        break; // Si llegamos aquí, todos los datos están completos y válidos, salimos del ciclo while
+    }
 
     alert("Bienvenido al calculador de presupuesto.");
 
     let presupuestos = []; // Array para almacenar los datos ingresados por el usuario
 
-    // Continuamos con el cálculo del presupuesto
     let costoBase = 0;
 
     switch (tipoDeWeb.toLowerCase()) {
@@ -51,7 +70,6 @@ function calcularPresupuesto() {
     }
     let costoTotal = costoBase;
 
-    // Agregar los datos a un objeto y luego al array de presupuestos
     let nuevoPresupuesto = {
         tipoDeWeb: tipoDeWeb,
         costoTotal: costoTotal,
@@ -72,8 +90,7 @@ function calcularPresupuesto() {
         console.log(`- Número de Páginas: ${presupuesto.numPaginas}`);
     });
 
-    // Mostrar los resultados en una lista ordenada en el HTML
-    let listaHTML = document.createElement("ol"); // Creamos una lista ordenada
+    let listaHTML = document.createElement("ol"); 
     listaHTML.classList.add("resultado-lista");
 
     presupuestos.forEach(function(presupuesto, index) {
@@ -83,8 +100,9 @@ function calcularPresupuesto() {
     });
 
     let container = document.getElementById("resultado-container");
-    container.innerHTML = ""; // Limpio el contenido previo
+    container.innerHTML = ""; 
 
+    // Agregar Titulo de este es tu presupuesto
     let titulo = document.createElement("h2");
     titulo.textContent = "Este es tu presupuesto";
     container.appendChild(titulo);
