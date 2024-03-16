@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("neon-button").addEventListener("click", function() {
-        mostrarFormulario();
+        calcularPresupuesto();
     });
 
     // Al cargar la página, limpiamos el contenido del contenedor y lo ocultamos
@@ -12,22 +12,10 @@ function limpiarContenedorResultado() {
     container.style.display = "none"; // Ocultamos el contenedor
 }
 
-function mostrarFormulario() {
-    let tipoDeWeb = prompt("¿Qué tipo de página web deseas: Web Estatica, Landing Page o Aplicacion Web?");
-    if (!tipoDeWeb) return; // Si el usuario cancela, salimos de la función
-
-    let diasEntrega = parseInt(prompt("¿En cuántos días la quieres?"));
-    if (isNaN(diasEntrega)) return; // Si el usuario cancela o no completa la entrada, salimos de la función
-
-    let numPaginas = parseInt(prompt("¿Cuántas páginas tendrá el sitio?"));
-    if (isNaN(numPaginas)) return; // Si el usuario cancela o no completa la entrada, salimos de la función
-
-    calcularPresupuesto(tipoDeWeb, diasEntrega, numPaginas);
-}
 
 function calcularPresupuesto(tipoDeWeb, diasEntrega, numPaginas) {
     alert("Bienvenido al calculador de presupuesto.");
-
+    if (!tipoDeWeb) return; // Si el usuario cancela, salimos de la función
     let costoBase = 0;
 
     switch (tipoDeWeb.toLowerCase()) {
