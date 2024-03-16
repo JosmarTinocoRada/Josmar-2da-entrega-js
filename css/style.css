@@ -1,0 +1,50 @@
+body {
+    background-color: #000000; /* Cambiamos el color de fondo del body */
+}
+
+.title { 
+    color: white; /* Cambiamos el color del texto a blanco */
+    padding: 10px; /* Añadimos espacio alrededor del texto */
+    text-align: center; /* Centramos el texto */
+}
+.contenedor{
+    display: flex;
+    justify-content: center;
+}
+.neon-button {
+    background-color: black; 
+    color: #8500dd;
+    border: none; 
+    padding: 15px 30px; 
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 20px auto; 
+    cursor: pointer; 
+    box-shadow: 0 0 15px #da52fc; 
+    border-radius: 20px; 
+}
+
+.neon-button:hover {
+    box-shadow: 0 0 25px #8500dd, 0 0 50px #8500dd, 0 0 75px #8500dd; /* Efecto de brillo al pasar el ratón */
+}
+
+.resultado-container {
+    display: none; /* Ocultar el contenedor por defecto */
+    width: 50%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: black;
+    color: white;
+    border-radius: 2rem;
+    border-color: white;
+    box-shadow: 0 0 15px white;
+}
+
+.resultado-container ol {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
